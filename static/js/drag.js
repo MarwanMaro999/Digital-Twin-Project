@@ -22,7 +22,7 @@ let importedModels = {};
 
 const models = {
   'Silo': {
-    url: '../static/models/silo.glb',
+    url: './static/models/silo.glb',
     position: new THREE.Vector3(0, 0, 0),
     scale: 1, // Default scale
     scaleOptions: [1, 1.5, 2], // Available scale options
@@ -30,7 +30,7 @@ const models = {
     glbDimensions: { width: 7.79, height: 16.4, length: 7.79 }, // meters
   },
   'Preheater': {
-    url: '../static/models/preheater.glb',
+    url: './static/models/preheater.glb',
     position: new THREE.Vector3(400, 0, 200),
     scale: 1, // Default scale
     scaleOptions: [1, 1.5, 2], // Available scale options
@@ -38,7 +38,7 @@ const models = {
     glbDimensions: { width: 10.4, height: 12.7, length: 20.1 }, // meters
   },
   'Storage': {
-    url: '../static/models/Storage.glb',
+    url: './static/models/Storage.glb',
     position: new THREE.Vector3(300, 0, -200),
     scale: 1, // Default scale
     scaleOptions: [1, 1.5, 2], // Available scale options
@@ -419,12 +419,12 @@ function showImportModelModal() {
     const glbFile = document.getElementById('glbFile').files[0];
     
     if (!modelName) {
-      alert('Please enter a model name');
+      showNotification('Please enter a model name', 'error');
       return;
     }
     
     if (!glbFile) {
-      alert('Please select a GLB file');
+      showNotification('Please select a GLB file', 'error');
       return;
     }
     
@@ -579,7 +579,7 @@ function init() {
   scene.add(fillLight);
 
   // Improved map setup
-  const mapTexture = new THREE.TextureLoader().load('../static/img/Lafarge Map.png', scheduleRender);
+  const mapTexture = new THREE.TextureLoader().load('./static/img/Lafarge Map.png', scheduleRender);
   mapTexture.wrapS = THREE.RepeatWrapping;
   mapTexture.wrapT = THREE.RepeatWrapping;
   mapTexture.generateMipmaps = false;
@@ -641,7 +641,7 @@ function init() {
   sidebarHeader.className = 'sidebar-header';
   sidebarHeader.innerHTML = `
     <div class="scene-info">
-      <h3><img src="../static/img/Holcim Logo.png" alt="HOLN Logo" style="width: 24px; height: 24px; margin-right: 8px; vertical-align: middle;"> Holcim Digital Twin Builder</h3>
+      <h3><img src="./static/img/Holcim Logo.png" alt="HOLN Logo" style="width: 24px; height: 24px; margin-right: 8px; vertical-align: middle;"> Holcim Digital Twin Builder</h3>
       <div class="scene-stats">
         <span id="modelCount">0 models</span>
         <span id="renderMode">Perspective</span>
@@ -1132,17 +1132,17 @@ function init() {
       const glbFile = document.getElementById('glbFile').files[0];
       
       if (!modelName) {
-        alert('Please enter a model name');
+        showNotification('Please enter a model name', 'error');
         return;
       }
       
       if (!realHeight || realHeight <= 0) {
-        alert('Please enter a valid real height in meters');
+        showNotification('Please enter a valid real height in meters', 'error');
         return;
       }
       
       if (!glbFile) {
-        alert('Please select a GLB file');
+        showNotification('Please select a GLB file', 'error');
         return;
       }
       
